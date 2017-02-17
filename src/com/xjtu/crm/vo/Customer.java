@@ -1,5 +1,9 @@
 package com.xjtu.crm.vo;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+
 public class Customer {
 	 private int id;
 	 private String name;
@@ -8,7 +12,33 @@ public class Customer {
 	 private String tel;
 	 private String email;
 	 private java.util.Date birthday;
-	 public Customer(){}
+	 
+	 //---------------------------------
+	 private String  year ;
+	 private String  month ;
+	 
+	 private String date  ;
+	 
+	 public String getYear() {
+		return year;
+	}
+	public String getMonth() {
+		return month;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setYear(String year) {
+		this.year = year;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
+	public void setDate(String date) {
+		this.date = date;
+	}
+	 //---------------------------------
+	public Customer(){}
 	public int getId() {
 		return id;
 	}
@@ -46,7 +76,16 @@ public class Customer {
 		this.email = email;
 	}
 	public java.util.Date getBirthday() {
-		return birthday;
+		if(year!=null | month!=null | date!=null){
+		try {
+			//String->java.util.Date
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			this.birthday = sdf.parse(this.year+"-"+this.month+"-"+this.date);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		}
+		return this.birthday;
 	}
 	public void setBirthday(java.util.Date birthday) {
 		this.birthday = birthday;

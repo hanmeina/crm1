@@ -25,9 +25,11 @@ public int getAllRecordNO() {
 public void setAllRecordNO(int allRecordNO) {
 	this.allRecordNO = allRecordNO;
 	if(this.allRecordNO % this.perPageNO == 0){
-		this.allPageNO = this.allRecordNO % this.perPageNO;
+		this.allPageNO = this.allRecordNO / this.perPageNO;
+		System.out.println("pageNo1:"+this.allPageNO);
 	}else{
-		this.allPageNO = this.allRecordNO % this.perPageNO + 1;
+		this.allPageNO = this.allRecordNO / this.perPageNO + 1;
+		System.out.println("pageNo2:"+this.allPageNO);
 	}
 }
 public int getCurrPageNO() {

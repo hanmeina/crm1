@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+  <a href="/myday12/welcome.jsp" style="text-decoration: none">返回</a>
 </body>
 </html>

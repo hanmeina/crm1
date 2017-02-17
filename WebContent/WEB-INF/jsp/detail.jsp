@@ -27,6 +27,7 @@
   
 
   <body>
+  <form action="/myday12/CrmServlet?method=updateCustomer&id=${customer.id }" method="post">
   	<table border="1" align="center" width="60%">
   		<caption><h1>更新客户信息</h1></caption>
   		<tr>
@@ -55,23 +56,32 @@
   		<tr>
   			<th>生日</th>
   			<td>
-  				<select>
+  				<select name="year">
   					<c:forEach var="year" begin="1990" end="2001">
   						<option ${y==year?'selected':''}>${year}</option>
    					</c:forEach>
   				</select>年
-  				<select>
+  				<select name="month">
   					<c:forEach var="month" begin="1" end="12">
   						<option ${m==month?'selected':''}>${month}</option>
   					</c:forEach>
    				</select>月
-  				<select>
+  				<select name="date">
   					<c:forEach var="date" begin="1" end="31">
   						<option ${d==date?'selected':''}>${date}</option>
   					</c:forEach>
   				</select>日
   			</td>
   		</tr>
+  		<tr>
+  		
+  		   <td colspan="2"> <input type="submit" value="修改"/> </td>
+  		</tr>
   	</table>
+  	</form>
+     	<p align="right">
+  		<jsp:include page="back.jsp"></jsp:include>
+  		</p>
   </body>
 </html>
+  		

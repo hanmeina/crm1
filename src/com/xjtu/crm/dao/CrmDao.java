@@ -40,6 +40,42 @@ public class CrmDao {
 	   queryRunner.update(sql,id);
 	 
    }
+   
+   /**
+    * 更新用户
+    * @param id
+    * @return
+    * @throws SQLException
+    */
+   public void updateCustomer(Customer  c) throws SQLException{
+	   String sql = "update customer set name=?,address=?,tel=?,email=? where id=?";
+		queryRunner.update(sql,new Object[]{
+			c.getName(),
+			c.getAddress(),
+			c.getTel(),
+			c.getEmail(),
+			c.getId()
+		});
+	 
+   }
+   /**
+    * 添加用户
+    * @param id
+    * @return
+    * @throws SQLException
+    */
+   public void addCustomer(Customer  c) throws SQLException{
+	   String sql = "insert  into customer(name,gender,address,tel,email,birthday) values(?,?,?,?,?,?)";
+	    queryRunner.update(sql,new Object[]{
+	    		c.getName(),
+	    		c.getGender(),
+	    		c.getAddress(),
+	    		c.getTel(),
+	    		c.getEmail(),
+	    		new java.sql.Date(c.getBirthday().getTime())	    		
+	    });
+	 
+   }
    /**
     * 通过id查找某个客户
     * @param id
@@ -60,6 +96,7 @@ public class CrmDao {
 	   Object[] objects =  queryRunner.query(sql, new ArrayHandler());
 	   Long temp = (Long)objects[0];
 	   sum = temp.intValue();
+	   System.out.println("sum:"+sum);
 	   return sum;
    }
 }

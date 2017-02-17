@@ -11,8 +11,25 @@
     		//定位到inputID所对应的元素
     		var inputElement = document.getElementById("inputID");
     		var currPageNO = inputElement.value;
-    		var url = "/myday12/CrmServlet?method=findAllCustomer&currPageNO="+currPageNO;
-    		window.location.href = url;
+    		//判断当前页号的合理范围
+    		if(currPageNO>=1 && currPageNO <= ${page.allPageNO}){
+    			var url = "/myday12/CrmServlet?method=findAllCustomer&currPageNO="+currPageNO;
+        		window.location.href = url;
+    			
+    		 }else{
+    			window.alert("请输入合理的页号范围");
+    			
+    			//js实现
+    			//将光标定位到inputID处
+    	        // document.getElementById("inputID").focus();
+    			//选中原内容
+    	         //document.getElementById("inputID").select();
+    			//Jquery实现
+    			$("#inputID").focus();
+    			$("#inputID").select();
+    		}
+    		
+    		
     	}
     	function deleteAll(){
     		//定位到tableID所对应的元素，即<table>标签
@@ -36,11 +53,16 @@
     		$("input[name=checkbox]:checked").each(function(){ 			
     			ids += $(this).val()+"_";
     		});
+    		if(ids.length>0){
+    			//alert(ids);    		
+        		//ids="1_2_3_"
+        		var url = "/myday12/CrmServlet?method=deleteCustomerById&ids="+ids;
+        		window.location.href = url;
+    			
+    		}else{
     
-    		 //alert(ids);    		
-    		//ids="1_2_3_"
-    		var url = "/myday12/CrmServlet?method=deleteCustomerById&ids="+ids;
-    		window.location.href = url;
+    			window.alert("请选中要删除的状态");
+    		}
     	}
     	
     </script>
@@ -76,7 +98,16 @@
   				<input type="button" value="删除" onclick="deleteAll()"/>
   				<input id="inputID" type="text" size="1" name="currPageNO"/>
   				<input type="button" value="GO" onclick="fy()"/>
+  				当前第${ page.currPageNO}页 /共${page.allPageNO}页
   			</td>
+  		</tr>
+  		<tr>
+  		   <td>
+  		      <a href="/myday12/CrmServlet?method=toAddJsp" style="text-decoration: none" >
+  		             增加客户信息
+  		      </a>
+  		   
+  		   </td>
   		</tr>
   	</table>
   </body>

@@ -3,12 +3,44 @@ package com.xjtu.crm.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.sun.org.apache.xml.internal.resolver.helpers.PublicId;
 import com.xjtu.crm.dao.CrmDao;
 import com.xjtu.crm.vo.Customer;
 import com.xjtu.crm.vo.Page;
 
 public class CrmService {
  CrmDao  crmDao = new CrmDao();
+ 
+ /**
+  * 更新用户
+  * @param c
+  * @throws Exception
+  */
+ public void updateCustomer(Customer c) throws Exception{
+	 try {
+		crmDao.updateCustomer(c);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		throw new Exception();
+	}
+	 
+ }
+ /**
+  * 注册用户
+  * @param c
+  * @throws Exception
+  */
+ public void addCustomer(Customer c) throws Exception{
+	 try {
+		crmDao.addCustomer(c);
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+		throw new Exception();
+	}
+	 
+ }
  /**
   * 根据id删除客户
   * @param ids
